@@ -9,6 +9,6 @@ cmake ..
 make
 
 # Run the test
-cd test
+cd tests
 export GTEST_COLOR=1
 ctest --verbose

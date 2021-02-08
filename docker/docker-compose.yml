@@ -9,12 +9,3 @@ services:
     user: $UID:$GID
     volumes:
         - "../:/build"
-  docs-builder:
-    build:
-      context: .
-      target: docs-builder
-    image: docs-builder
-    command: make -C docs html
-    user: $UID:$GID
-    volumes:
-        - "../:/build"

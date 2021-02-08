@@ -10,5 +10,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # add the library
 add_subdirectory(src)
 
-# add test
-add_subdirectory(test)
+# Enable testing only when building this project directly
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+    option(PACKAGE_TESTS "Build the tests" ON)
+endif()
+if(PACKAGE_TESTS)
+    enable_testing()
+    include(GoogleTest)
+    add_subdirectory(tests)
+endif()

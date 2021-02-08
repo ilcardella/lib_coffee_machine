@@ -16,12 +16,9 @@ build-docker:
 test: build-docker
 > $(DOCKER_RUN) lib_coffee_machine_builder scripts/test-project.sh
 
-docs:
-> $(DOCKER_COMPOSE) --exit-code-from docs-builder docs-builder
-
-ci: test docs
+ci: test
 
 clean:
 > rm -rf build
 
-.PHONY: default docs ci test build-docker clean
+.PHONY: default ci test build-docker clean
