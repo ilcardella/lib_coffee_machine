@@ -30,9 +30,3 @@ TEST_F(TestPIDController, testFaultyController)
     ASSERT_EQ(status.start_timestamp, 0.0);
     ASSERT_EQ(status.steam_mode_timestamp, Adapter::millis_ret);
 }
-
-int main(int argc, char *argv[])
-{
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}

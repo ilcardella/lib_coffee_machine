@@ -148,9 +148,3 @@ TEST_F(TestSafetyTimeouts, testSteamSafetyTimeout)
     ASSERT_EQ(status.start_timestamp, 0.0);
     ASSERT_EQ(status.steam_mode_timestamp, exceeded_time - 1000);
 }
-
-int main(int argc, char *argv[])
-{
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}

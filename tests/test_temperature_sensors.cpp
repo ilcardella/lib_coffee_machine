@@ -156,9 +156,3 @@ TEST_F(TestTemperatureSensors, testSteamModeFaultySensor)
     ASSERT_EQ(status.start_timestamp, 0.0);
     ASSERT_EQ(status.steam_mode_timestamp, 0.0);
 }
-
-int main(int argc, char *argv[])
-{
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}

@@ -80,9 +80,3 @@ TEST_F(TestMovingAverage, testHistoryisOverwrittenWhenFull)
     // expect average of 100 200 300 400 500
     ASSERT_EQ(avg.get(), 300);
 }
-
-int main(int argc, char *argv[])
-{
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}

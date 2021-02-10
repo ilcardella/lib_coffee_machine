@@ -86,9 +86,3 @@ TEST_F(TestSerialInterface, testSerialDebugMode)
     // Verify message requested as output
     ASSERT_EQ(strcmp(serial.output_string, "1,37.0,145.0,1,Debug mode"), 0);
 }
-
-int main(int argc, char *argv[])
-{
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
