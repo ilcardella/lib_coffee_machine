@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Gaggia
+namespace Machine
 {
 enum class Mode
 {
@@ -8,7 +8,7 @@ enum class Mode
     STEAM_MODE = 1
 };
 
-struct ControlStatus
+struct Status
 {
     Mode machine_mode = Mode::WATER_MODE;
     double current_temperature = 0.0;
@@ -19,7 +19,7 @@ struct ControlStatus
     unsigned long start_timestamp = 0;
     unsigned long steam_mode_timestamp = 0;
 };
-} // namespace Gaggia
+} // namespace Machine
 
 namespace string_utils
 {

@@ -8,7 +8,7 @@ TEST_F(TestTemperatureSensors, testWaterModeHealthySensorHeating)
 {
     auto status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::WATER_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::WATER_MODE);
     ASSERT_EQ(status.current_temperature, 10.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_WATER_TEMP);
     ASSERT_TRUE(status.water_heater_on);
@@ -26,7 +26,7 @@ TEST_F(TestTemperatureSensors, testWaterModeHealthySensorCooling)
 
     auto status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::WATER_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::WATER_MODE);
     ASSERT_EQ(status.current_temperature, 100.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_WATER_TEMP);
     ASSERT_FALSE(status.water_heater_on);
@@ -45,7 +45,7 @@ TEST_F(TestTemperatureSensors, testWaterModeHealthySensorStandby)
 
     auto status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::WATER_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::WATER_MODE);
     ASSERT_EQ(status.current_temperature, Configuration::TARGET_WATER_TEMP);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_WATER_TEMP);
     ASSERT_FALSE(status.water_heater_on);
@@ -65,7 +65,7 @@ TEST_F(TestTemperatureSensors, testWaterModeFaultySensor)
 
     auto status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::WATER_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::WATER_MODE);
     ASSERT_EQ(status.current_temperature, 0.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_WATER_TEMP);
     ASSERT_FALSE(status.water_heater_on);
@@ -83,7 +83,7 @@ TEST_F(TestTemperatureSensors, testSteamModeHealthySensorHeating)
 
     auto status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::STEAM_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::STEAM_MODE);
     ASSERT_EQ(status.current_temperature, 10.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_STEAM_TEMP);
     ASSERT_TRUE(status.water_heater_on);
@@ -103,7 +103,7 @@ TEST_F(TestTemperatureSensors, testSteamModeHealthySensorCooling)
 
     auto status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::STEAM_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::STEAM_MODE);
     ASSERT_EQ(status.current_temperature, 200.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_STEAM_TEMP);
     ASSERT_FALSE(status.water_heater_on);
@@ -124,7 +124,7 @@ TEST_F(TestTemperatureSensors, testSteamModeHealthySensorStandby)
 
     auto status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::STEAM_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::STEAM_MODE);
     ASSERT_EQ(status.current_temperature, Configuration::TARGET_STEAM_TEMP);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_STEAM_TEMP);
     ASSERT_FALSE(status.water_heater_on);
@@ -146,7 +146,7 @@ TEST_F(TestTemperatureSensors, testSteamModeFaultySensor)
 
     auto status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::STEAM_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::STEAM_MODE);
     ASSERT_EQ(status.current_temperature, 0.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_STEAM_TEMP);
     ASSERT_FALSE(status.water_heater_on);

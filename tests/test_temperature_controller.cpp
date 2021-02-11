@@ -11,7 +11,7 @@ TEST_F(TestPIDController, testFaultyController)
 
     auto status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::WATER_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::WATER_MODE);
     ASSERT_EQ(status.current_temperature, 10.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_WATER_TEMP);
     ASSERT_FALSE(status.water_heater_on);
@@ -22,7 +22,7 @@ TEST_F(TestPIDController, testFaultyController)
     controller.healthy = true;
     status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::WATER_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::WATER_MODE);
     ASSERT_EQ(status.current_temperature, 10.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_WATER_TEMP);
     ASSERT_TRUE(status.water_heater_on);

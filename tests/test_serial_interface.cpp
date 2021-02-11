@@ -8,7 +8,7 @@ TEST_F(TestSerialInterface, testSerialEnableAndDisableOutputStatus)
 {
     auto status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::WATER_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::WATER_MODE);
     ASSERT_EQ(status.current_temperature, 10.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_WATER_TEMP);
     ASSERT_TRUE(status.water_heater_on);
@@ -24,7 +24,7 @@ TEST_F(TestSerialInterface, testSerialEnableAndDisableOutputStatus)
     status = machine->spin();
 
     // Verify the status request to send
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::WATER_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::WATER_MODE);
     ASSERT_EQ(status.current_temperature, 10.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_WATER_TEMP);
     ASSERT_TRUE(status.water_heater_on);
@@ -57,7 +57,7 @@ TEST_F(TestSerialInterface, testSerialDebugMode)
 
     status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::WATER_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::WATER_MODE);
     ASSERT_EQ(status.current_temperature, 37.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_WATER_TEMP);
     ASSERT_TRUE(status.water_heater_on);
@@ -76,7 +76,7 @@ TEST_F(TestSerialInterface, testSerialDebugMode)
 
     status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::STEAM_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::STEAM_MODE);
     ASSERT_EQ(status.current_temperature, 37.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_STEAM_TEMP);
     ASSERT_TRUE(status.water_heater_on);

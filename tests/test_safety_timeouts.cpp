@@ -8,7 +8,7 @@ TEST_F(TestSafetyTimeouts, testWaterSafetyTimeout)
 {
     auto status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::WATER_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::WATER_MODE);
     ASSERT_EQ(status.current_temperature, 10.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_WATER_TEMP);
     ASSERT_TRUE(status.water_heater_on);
@@ -21,7 +21,7 @@ TEST_F(TestSafetyTimeouts, testWaterSafetyTimeout)
     Adapter::millis_ret = exceeded_time;
     status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::WATER_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::WATER_MODE);
     ASSERT_EQ(status.current_temperature, 10.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_WATER_TEMP);
     ASSERT_TRUE(status.water_heater_on);
@@ -34,7 +34,7 @@ TEST_F(TestSafetyTimeouts, testWaterSafetyTimeout)
     Adapter::millis_ret = exceeded_time;
     status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::WATER_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::WATER_MODE);
     ASSERT_EQ(status.current_temperature, 10.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_WATER_TEMP);
     ASSERT_FALSE(status.water_heater_on);
@@ -49,7 +49,7 @@ TEST_F(TestSafetyTimeouts, testWaterSafetyTimeout)
     Adapter::millis_ret = exceeded_time;
     status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::STEAM_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::STEAM_MODE);
     ASSERT_EQ(status.current_temperature, 10.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_STEAM_TEMP);
     ASSERT_FALSE(status.water_heater_on);
@@ -65,7 +65,7 @@ TEST_F(TestSafetyTimeouts, testWaterSafetyTimeout)
     Adapter::millis_ret = exceeded_time;
     status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::WATER_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::WATER_MODE);
     ASSERT_EQ(status.current_temperature, 10.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_WATER_TEMP);
     ASSERT_FALSE(status.water_heater_on);
@@ -78,7 +78,7 @@ TEST_F(TestSafetyTimeouts, testSteamSafetyTimeout)
 {
     auto status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::WATER_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::WATER_MODE);
     ASSERT_EQ(status.current_temperature, 10.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_WATER_TEMP);
     ASSERT_TRUE(status.water_heater_on);
@@ -95,7 +95,7 @@ TEST_F(TestSafetyTimeouts, testSteamSafetyTimeout)
     Adapter::millis_ret = exceeded_time;
     status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::STEAM_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::STEAM_MODE);
     ASSERT_EQ(status.current_temperature, 10.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_STEAM_TEMP);
     ASSERT_TRUE(status.water_heater_on);
@@ -109,7 +109,7 @@ TEST_F(TestSafetyTimeouts, testSteamSafetyTimeout)
     status = machine->spin();
 
     // Verify the heater is turned off
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::STEAM_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::STEAM_MODE);
     ASSERT_EQ(status.current_temperature, 10.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_STEAM_TEMP);
     ASSERT_FALSE(status.water_heater_on);
@@ -125,7 +125,7 @@ TEST_F(TestSafetyTimeouts, testSteamSafetyTimeout)
     Adapter::millis_ret = exceeded_time;
     status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::WATER_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::WATER_MODE);
     ASSERT_EQ(status.current_temperature, 10.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_WATER_TEMP);
     ASSERT_TRUE(status.water_heater_on);
@@ -140,7 +140,7 @@ TEST_F(TestSafetyTimeouts, testSteamSafetyTimeout)
     Adapter::millis_ret = exceeded_time;
     status = machine->spin();
 
-    ASSERT_EQ(status.machine_mode, Gaggia::Mode::STEAM_MODE);
+    ASSERT_EQ(status.machine_mode, Machine::Mode::STEAM_MODE);
     ASSERT_EQ(status.current_temperature, 10.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_STEAM_TEMP);
     ASSERT_TRUE(status.water_heater_on);
