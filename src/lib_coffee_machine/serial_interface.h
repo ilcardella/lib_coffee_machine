@@ -52,7 +52,7 @@ template <class Adapter> class SerialInterface
         }
     }
 
-    void print_status(const Gaggia::ControlStatus &status)
+    void print_status(const Machine::Status &status)
     {
         auto now = Adapter::millis();
         if (is_output_enabled() && now - time_last_print > PRINT_TIMEOUT)
@@ -87,7 +87,7 @@ template <class Adapter> class SerialInterface
   private:
     void print_help()
     {
-        serial->println("**** GaggiaPIDController serial interface ****");
+        serial->println("**** Coffee Machine serial interface ****");
         serial->println("Commands:");
         serial->println("- help: show this message");
         serial->println("- debug [on/off]: enable/disable debug mode");

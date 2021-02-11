@@ -28,7 +28,7 @@ template <class Adapter, class Configuration> class CoffeeMachine
         machine_status.steam_mode_timestamp = Adapter::millis();
     }
 
-    Gaggia::ControlStatus spin()
+    Machine::Status spin()
     {
         serial.read_input();
 
@@ -57,14 +57,14 @@ template <class Adapter, class Configuration> class CoffeeMachine
         machine_status.machine_mode = mode_detector.get_mode();
 
         // Reset steam mode timeout counter when not in steam mode
-        if (machine_status.machine_mode != Gaggia::Mode::STEAM_MODE)
+        if (machine_status.machine_mode != Machine::Mode::STEAM_MODE)
         {
             machine_status.steam_mode_timestamp = now;
         }
 
         // Set target temperature based on machine mode
         machine_status.target_temperature =
-            (machine_status.machine_mode == Gaggia::Mode::WATER_MODE)
+            (machine_status.machine_mode == Machine::Mode::WATER_MODE)
                 ? Configuration::TARGET_WATER_TEMP
                 : Configuration::TARGET_STEAM_TEMP;
 
@@ -79,8 +79,8 @@ template <class Adapter, class Configuration> class CoffeeMachine
 
         // Select correct sensor for current operation mode
         TemperatureSensor<Adapter> *sensor =
-            (machine_status.machine_mode == Gaggia::Mode::WATER_MODE) ? &water_t_sensor
-                                                                      : &steam_t_sensor;
+            (machine_status.machine_mode == Machine::Mode::WATER_MODE) ? &water_t_sensor
+                                                                       : &steam_t_sensor;
 
         // Get the current temp from the temperature sensor
         float sensor_value(0.0f);
@@ -92,7 +92,7 @@ template <class Adapter, class Configuration> class CoffeeMachine
         }
 
         // Add a static offset due possible reading error
-        sensor_value += (machine_status.machine_mode == Gaggia::Mode::WATER_MODE)
+        sensor_value += (machine_status.machine_mode == Machine::Mode::WATER_MODE)
                             ? Configuration::WATER_TEMP_OFFSET
                             : Configuration::STEAM_TEMP_OFFSET;
         machine_status.current_temperature = static_cast<double>(sensor_value);
@@ -158,6 +158,6 @@ template <class Adapter, class Configuration> class CoffeeMachine
     SerialInterface<Adapter> serial;
     Display<Adapter> display;
     ModeDetector mode_detector;
-    Gaggia::ControlStatus machine_status;
+    Machine::Status machine_status;
     Heater heater;
 };

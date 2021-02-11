@@ -10,7 +10,7 @@ template <class Adapter> class Display
     {
     }
 
-    bool update(const Gaggia::ControlStatus &status)
+    bool update(const Machine::Status &status)
     {
         // Refresh the display with a reasonable rate
         auto now = Adapter::millis();
@@ -28,10 +28,10 @@ template <class Adapter> class Display
     }
 
   private:
-    void write_machine_mode(const Gaggia::Mode &mode)
+    void write_machine_mode(const Machine::Mode &mode)
     {
         display->print(30, 1,
-                       (mode == Gaggia::Mode::WATER_MODE) ? "Water mode" : "Steam mode");
+                       (mode == Machine::Mode::WATER_MODE) ? "Water mode" : "Steam mode");
     }
 
     void write_current_temp(const double &temp)

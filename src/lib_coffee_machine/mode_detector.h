@@ -11,9 +11,9 @@ class ModeDetector
         pin->set_mode(IOPin::Modes::IN_PU);
     }
 
-    Gaggia::Mode get_mode()
+    Machine::Mode get_mode()
     {
-        return (pin->is_high()) ? Gaggia::Mode::WATER_MODE : Gaggia::Mode::STEAM_MODE;
+        return (pin->is_high()) ? Machine::Mode::WATER_MODE : Machine::Mode::STEAM_MODE;
     }
 
   private:
