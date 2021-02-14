@@ -17,9 +17,9 @@ target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)
 
 # Enable testing only when building this project directly
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-    option(PACKAGE_TESTS "Build the tests" ON)
+    option(BUILD_TESTS "Build the tests" ON)
 endif()
-if(PACKAGE_TESTS)
+if(BUILD_TESTS)
     enable_testing()
     include(GoogleTest)
     add_subdirectory(tests)
