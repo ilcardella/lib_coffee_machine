@@ -11,8 +11,8 @@ macro(custom_add_gtest TEST_NAME)
 endmacro()
 
 
-# Add GoogleTest
-add_subdirectory("${PROJECT_SOURCE_DIR}/extern/googletest" "extern/googletest")
+# Add GoogleTest excluding install target
+add_subdirectory("${PROJECT_SOURCE_DIR}/extern/googletest" "extern/googletest" EXCLUDE_FROM_ALL)
 # This keeps the cache cleaner
 mark_as_advanced(
     BUILD_GMOCK BUILD_GTEST BUILD_SHARED_LIBS
