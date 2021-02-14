@@ -1,5 +1,12 @@
 #pragma once
 
+// strlen() comes from different headers based on platforms
+#ifdef __AVR__
+#include <string.h>
+#else
+#include <cstring>
+#endif
+
 namespace Machine
 {
 enum class Mode
