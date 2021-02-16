@@ -25,3 +25,5 @@ custom_add_gtest("test_temperature_sensors")
 custom_add_gtest("test_temperature_controller")
 custom_add_gtest("test_safety_timeouts")
 custom_add_gtest("test_serial_interface")
+
+add_custom_target(run_tests COMMAND ctest ARGS --output-on-failure --verbose)
