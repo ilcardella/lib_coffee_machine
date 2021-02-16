@@ -5,21 +5,57 @@ The original application that led to its development was a PID controller for a 
 
 Furthermore, being hardware independent, the library allows automated testing in the CI pipeline.
 
+The library uses C++17 features.
+
 ## Getting started
 
-The are probably different ways you can use this library in your project
+The are different ways you can use this library in your project, depending on your setup
+you might prefer to clone it, add as a git submodule or include it with CMake.
+
+### CMake
+
+In this configuration the first step is to install the library in your development
+environment. The `Makefile` provide a target to do exactly that.
+
+```
+make install
+```
+
+Then in your top-level `CMakelists.txt` you can find the library and then link your
+targets against with, as in the example below:
+
+```CMake
+project(my_project)
+...
+find_package(lib_coffee_machine CONFIG REQUIRED)
+...
+add_executable(${PROJECT_NAME} ...)
+target_link_libraries(${PROJECT_NAME}
+                        lib_coffee_machine::lib_coffee_machine
+                        ...
+)
+...
+```
 
 ### Clone
 
-Clone the library into your project and then configure the project to include it.
-If for example you are using `CMake`, you simply need a `add_subdirectory(...)` instruction.
+Clone this repository into your project workspace and make sure the source code is
+accessible to your codebase.
+For example if you are using `CMake`, you might need a `add_subdirectory(path/to/library)`
+instruction.
+If your project is Arduino based, then you need to clone this repository inside the
+`libraries` subfolder
+
+```bash
+git clone https://github.com/ilcardella/lib_coffee_machine.git libraries/lib_coffee_machine
+```
 
 ### As submodule
 
 Create a submodule in your project with
 
-```
-git submodule add https://github.com/ilcardella/coffee_machine_lib.git coffee_machine_lib
+```bash
+git submodule add https://github.com/ilcardella/lib_coffee_machine.git lib_coffee_machine
 ```
 
 Then, as in the previous option, just integrate the library with your project.
