@@ -10,13 +10,13 @@ DOCKER_RUN = $(ENV_VARS) docker-compose -f docker/docker-compose.yml run --rm
 
 default: ci
 
-build-docker:
+docker:
 > $(DOCKER_BUILD) lib_coffee_machine_builder
 
-test: build-docker
+test:
 > $(DOCKER_RUN) lib_coffee_machine_builder scripts/test-project.sh
 
-ci: test
+ci: docker test
 
 clean:
 > rm -rf build
@@ -24,4 +24,4 @@ clean:
 install: clean
 > scripts/install.sh
 
-.PHONY: default ci test build-docker clean install
+.PHONY: default ci test docker clean install
