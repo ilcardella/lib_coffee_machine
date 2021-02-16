@@ -3,6 +3,10 @@ cmake_minimum_required(VERSION 3.10)
 # set the project name
 project(lib_coffee_machine VERSION 0.1.0)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 # Setup variables for install targets
 include(GNUInstallDirs)
 
@@ -13,7 +17,9 @@ target_include_directories(
   INTERFACE $<BUILD_INTERFACE:${${PROJECT_NAME}_SOURCE_DIR}/include>
             $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
-target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)
+# TODO this makes gcc-arm-none-eabi 9.2.1 fail with "No known features for CXX compiler"
+# The workaround is to set the CMAKE_CXX vars above
+# target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)
 
 # Enable testing only when building this project directly
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
