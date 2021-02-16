@@ -231,6 +231,7 @@ The `coffee_machine.h` provides the main library class and interface that needs 
 ```c++
 
 #include <lib_coffee_machine/coffee_machine.h>
+
 // Implementation of the interfaces for your platform
 #include <my_interfaces.h>
 // Implementation of the Adapter
@@ -243,12 +244,12 @@ using Configuration = MyConfiguration;
 
 void main()
 {
-    # Create the custom interfaces
+    // Create the custom interfaces
     CustomTemperatureSensor* temp_sensor = new CustomTemperatureSensor();
     ...
 
-    # Create the coffee machine instance
-    CoffeeMachine machine<Adapter, Configuration>(temp_sensor, ...);
+    // Create the coffee machine instance
+    CoffeeMachine<Adapter, Configuration> machine(temp_sensor, ...);
 
     while (true)
     {
