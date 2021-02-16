@@ -8,6 +8,7 @@ RUN apt-get update \
     curl \
     build-essential \
     cmake \
+    python3 \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build

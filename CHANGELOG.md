@@ -3,6 +3,7 @@
 ## [0.1.0] - 11/02/2020
 ### Added
 - Added missing include for std functions
+- Updated CMake configuration adding install target
 - First release:
   - Support for water and steam temperature sensor
   - Support for serial interface

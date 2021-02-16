@@ -21,4 +21,7 @@ ci: test
 clean:
 > rm -rf build
 
-.PHONY: default ci test build-docker clean
+install: clean
+> scripts/install.sh
+
+.PHONY: default ci test build-docker clean install
