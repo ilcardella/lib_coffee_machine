@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string>
-#include <unistd.h>
 
 class TestAdapter
 {

@@ -152,7 +152,6 @@ This example shows an adapter class for the Arduino MCU to abstract platform spe
 #pragma once
 
 #include <Arduino.h>
-#include <Wire.h>
 
 class ArduinoAdapter
 {
