@@ -1,10 +1,12 @@
 # Coffee Machine Library Changelog
 
-## [] -
+## [0.2.0] - 24/02/2021
 ### Changed
 - Simplified example of Adapter class
+- Removed unused includes
+- Updated README examples
 
-## [0.1.0] - 11/02/2020
+## [0.1.0] - 11/02/2021
 ### Added
 - Added missing include for std functions
 - Updated CMake configuration adding install target
