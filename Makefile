@@ -3,18 +3,18 @@ ifeq ($(origin .RECIPEPREFIX), undefined)
 endif
 .RECIPEPREFIX = >
 
-ENV_VARS = UID=$(shell id -u) GID=$(shell id -g)
-DOCKER_COMPOSE = $(ENV_VARS) docker-compose -f docker/docker-compose.yml up --build
-DOCKER_BUILD = $(ENV_VARS) docker-compose -f docker/docker-compose.yml build --force-rm
-DOCKER_RUN = $(ENV_VARS) docker-compose -f docker/docker-compose.yml run --rm
+DOCKER_IMAGE = lib_coffee_machine_builder
+DOCKER_USER = -u $(shell id -u):$(shell id -g)
+DOCKER_BUILD = docker build --rm -f docker/Dockerfile --target builder -t $(DOCKER_IMAGE) .
+DOCKER_RUN = docker run --rm -t -v ${PWD}:/build -w /build $(DOCKER_USER) $(DOCKER_IMAGE):latest
 
 default: ci
 
 docker:
-> $(DOCKER_BUILD) lib_coffee_machine_builder
+> $(DOCKER_BUILD)
 
 test:
-> $(DOCKER_RUN) lib_coffee_machine_builder scripts/test-project.sh
+> $(DOCKER_RUN) scripts/test-project.sh
 
 ci: docker test
 
