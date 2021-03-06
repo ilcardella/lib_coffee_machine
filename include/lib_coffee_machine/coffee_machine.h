@@ -23,6 +23,7 @@ template <class Adapter, class Configuration> class CoffeeMachine
                          Configuration::STEAM_TEMP_REFRESH_PERIOD, 10),
           machine_status()
     {
+        serial.begin(Configuration::SERIAL_BAUDRATE);
         serial.enable_output(Configuration::ENABLE_OUTPUT);
 
         // Mark machine start time
