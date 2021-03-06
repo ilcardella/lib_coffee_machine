@@ -4,6 +4,9 @@
 ### Changed
 - Serial interface output status can now be configured
 
+### Fixed
+- Serial baudrate configuration is now used to initialise the serial interface
+
 ## [0.2.0] - 24/02/2021
 ### Changed
 - Simplified example of Adapter class

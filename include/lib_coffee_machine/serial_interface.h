@@ -6,8 +6,13 @@
 template <class Adapter> class SerialInterface
 {
   public:
-    SerialInterface(BaseSerialInterface *serial) : serial(serial)
+    SerialInterface(BaseSerialInterface *ifc) : serial(ifc)
     {
+    }
+
+    void begin(const unsigned long &baudrate)
+    {
+        serial->begin(baudrate);
     }
 
     void read_input()
