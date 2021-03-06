@@ -61,6 +61,7 @@ struct DefaultConfiguration
 
     // Serial interface
     inline static constexpr unsigned long SERIAL_BAUDRATE = 9600;
+    inline static constexpr bool ENABLE_OUTPUT = false;
 
     // Safety timeouts in milliseconds to turn off the heater. (disabled if < 1)
     inline static constexpr long SAFETY_TIMEOUT = 2400000; // 40 minutes

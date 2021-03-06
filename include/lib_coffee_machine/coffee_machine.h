@@ -12,10 +12,10 @@
 template <class Adapter, class Configuration> class CoffeeMachine
 {
   public:
-    CoffeeMachine(Controller *controller, BaseSerialInterface *serial,
+    CoffeeMachine(Controller *controller, BaseSerialInterface *serial_ifc,
                   IOPin *mode_switch_pin, BaseDisplay *display_type, IOPin *heater_pin,
                   BaseSensor *water_sensor, BaseSensor *steam_sensor)
-        : temp_controller(controller), serial(serial), mode_detector(mode_switch_pin),
+        : temp_controller(controller), serial(serial_ifc), mode_detector(mode_switch_pin),
           display(display_type), heater(heater_pin),
           water_t_sensor("water_sensor", water_sensor,
                          Configuration::WATER_TEMP_REFRESH_PERIOD, 10),
@@ -23,6 +23,8 @@ template <class Adapter, class Configuration> class CoffeeMachine
                          Configuration::STEAM_TEMP_REFRESH_PERIOD, 10),
           machine_status()
     {
+        serial.enable_output(Configuration::ENABLE_OUTPUT);
+
         // Mark machine start time
         machine_status.start_timestamp = Adapter::millis();
         machine_status.steam_mode_timestamp = Adapter::millis();

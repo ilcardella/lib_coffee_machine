@@ -25,27 +25,27 @@ template <class Adapter> class SerialInterface
             }
             else if (string_utils::start_with(data, "debug on"))
             {
-                inputs.debug_mode = true;
+                debug_mode = true;
                 serial->println("Setting debug mode ON");
             }
             else if (string_utils::start_with(data, "debug off"))
             {
-                inputs.debug_mode = false;
+                debug_mode = false;
                 serial->println("Setting debug mode OFF");
             }
             else if (string_utils::start_with(data, "output on"))
             {
-                inputs.enable_output = true;
+                enable_output(true);
                 serial->println("Setting output ON");
             }
             else if (string_utils::start_with(data, "output off"))
             {
-                inputs.enable_output = false;
+                enable_output(false);
                 serial->println("Setting output OFF");
             }
             else if (string_utils::start_with(data, "temp ") && is_debug_active())
             {
-                inputs.mock_temperature = string_utils::to_number<double>(data, 5);
+                mock_temperature = string_utils::to_number<double>(data, 5);
                 // serial->println("Setting mock temperature to; " + data);
                 serial->println("Setting mock temperature");
             }
@@ -76,12 +76,17 @@ template <class Adapter> class SerialInterface
 
     bool is_debug_active()
     {
-        return inputs.debug_mode;
+        return debug_mode;
     }
 
     double get_mock_temperature()
     {
-        return inputs.mock_temperature;
+        return mock_temperature;
+    }
+
+    void enable_output(const bool &enable)
+    {
+        output_enabled = enable;
     }
 
   private:
@@ -99,19 +104,15 @@ template <class Adapter> class SerialInterface
 
     bool is_output_enabled()
     {
-        return inputs.enable_output;
+        return output_enabled;
     }
 
     static constexpr unsigned short PRINT_TIMEOUT = 200;
     unsigned long time_last_print;
 
-    struct SerialInput
-    {
-        bool debug_mode = false;
-        bool enable_output = false;
-        double mock_temperature = 0.0;
-    };
-    SerialInput inputs;
+    bool output_enabled = false;
+    bool debug_mode = false;
+    double mock_temperature = 0.0;
 
     BaseSerialInterface *serial;
 };
