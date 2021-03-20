@@ -20,8 +20,11 @@ template <class Adapter> class RelayController
         auto now = Adapter::millis();
         if (now - last_update_ts < sample_period)
         {
+            // Use the previous output
+            *relay_on = previous_output;
             return true;
         }
+
         last_update_ts = now;
 
         // How much time it has passed in the current window frame
@@ -32,6 +35,7 @@ template <class Adapter> class RelayController
         {
             // Set the relay status based on the pid output
             *relay_on = (output >= window_progress);
+            previous_output = *relay_on;
             return true;
         }
         return false;
@@ -57,8 +61,11 @@ template <class Adapter> class RelayController
 
   private:
     static constexpr unsigned short WINDOW_SIZE = 5000;
+
     unsigned long sample_period = 100;
     unsigned long last_update_ts = 0;
 
     Controller *controller = nullptr;
+
+    bool previous_output = false;
 };
