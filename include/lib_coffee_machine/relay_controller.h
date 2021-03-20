@@ -56,7 +56,7 @@ template <class Adapter> class RelayController
 
   private:
     static constexpr unsigned short WINDOW_SIZE = 5000;
-    static constexpr unsigned short SAMPLE_PERIOD_MS = 10;
+    static constexpr unsigned short SAMPLE_PERIOD_MS = 100;
     unsigned long last_update_ts = 0;
 
     Controller *controller = nullptr;
