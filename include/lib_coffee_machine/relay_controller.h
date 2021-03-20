@@ -21,6 +21,7 @@ template <class Adapter> class RelayController
         {
             return true;
         }
+        last_update_ts = now;
 
         // How much time it has passed in the current window frame
         unsigned short window_progress = now % WINDOW_SIZE;
