@@ -57,7 +57,7 @@ struct DefaultConfiguration
 
     // SPI interface common pins
     inline static constexpr unsigned char SPI_CLK_PIN = 8;
-    inline static constexpr unsigned char SPI_DO_PIN = 9;
+    inline static constexpr unsigned char SPI_CS_PIN = 9;
 
     // Serial interface
     inline static constexpr unsigned long SERIAL_BAUDRATE = 9600;

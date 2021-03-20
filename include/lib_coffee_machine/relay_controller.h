@@ -15,8 +15,15 @@ template <class Adapter> class RelayController
     {
         double output(0.0);
 
+        // Limit the computation at the sample rate
+        auto now = Adapter::millis();
+        if (now - last_update_ts < SAMPLE_PERIOD_MS)
+        {
+            return true;
+        }
+
         // How much time it has passed in the current window frame
-        unsigned short window_progress = Adapter::millis() % WINDOW_SIZE;
+        unsigned short window_progress = now % WINDOW_SIZE;
 
         // Process the pid output
         if (controller->compute(input, setpoint, output))
@@ -48,6 +55,8 @@ template <class Adapter> class RelayController
 
   private:
     static constexpr unsigned short WINDOW_SIZE = 5000;
+    static constexpr unsigned short SAMPLE_PERIOD_MS = 10;
+    unsigned long last_update_ts = 0;
 
     Controller *controller = nullptr;
 };
