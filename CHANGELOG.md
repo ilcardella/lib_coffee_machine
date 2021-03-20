@@ -3,6 +3,8 @@
 ## []
 ### Changed
 - Serial interface output status can now be configured
+- Added sample rate to the Relay Controller (compute every 100ms)
+- Rename configuration SPI_DO_PIN to SPI_CS_PIN
 
 ### Fixed
 - Serial baudrate configuration is now used to initialise the serial interface

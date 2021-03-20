@@ -54,10 +54,11 @@ struct DefaultConfiguration
     inline static constexpr double P_GAIN = 125;
     inline static constexpr double I_GAIN = 0.8;
     inline static constexpr double D_GAIN = 0.75;
+    inline static constexpr unsigned long PID_SAMPLE_PERIOD = 100; // milliseconds
 
     // SPI interface common pins
     inline static constexpr unsigned char SPI_CLK_PIN = 8;
-    inline static constexpr unsigned char SPI_DO_PIN = 9;
+    inline static constexpr unsigned char SPI_CS_PIN = 9;
 
     // Serial interface
     inline static constexpr unsigned long SERIAL_BAUDRATE = 9600;

@@ -20,6 +20,7 @@ TEST_F(TestPIDController, testFaultyController)
     ASSERT_EQ(status.steam_mode_timestamp, Adapter::millis_ret);
 
     controller.healthy = true;
+    time_step();
     status = machine->spin();
 
     ASSERT_EQ(status.machine_mode, Machine::Mode::WATER_MODE);

@@ -5,7 +5,8 @@
 template <class Adapter> class RelayController
 {
   public:
-    RelayController(Controller *ctrl) : controller(ctrl)
+    RelayController(Controller *ctrl, const unsigned long &period)
+        : controller(ctrl), sample_period(period)
     {
         // the output signal is expressed as a time in ms, capped at WINDOW_SIZE
         controller->set_output_limits(0, WINDOW_SIZE);
@@ -15,14 +16,26 @@ template <class Adapter> class RelayController
     {
         double output(0.0);
 
+        // Limit the computation at the sample rate
+        auto now = Adapter::millis();
+        if (now - last_update_ts < sample_period)
+        {
+            // Use the previous output
+            *relay_on = previous_output;
+            return true;
+        }
+
+        last_update_ts = now;
+
         // How much time it has passed in the current window frame
-        unsigned short window_progress = Adapter::millis() % WINDOW_SIZE;
+        unsigned short window_progress = now % WINDOW_SIZE;
 
         // Process the pid output
         if (controller->compute(input, setpoint, output))
         {
             // Set the relay status based on the pid output
             *relay_on = (output >= window_progress);
+            previous_output = *relay_on;
             return true;
         }
         return false;
@@ -49,5 +62,10 @@ template <class Adapter> class RelayController
   private:
     static constexpr unsigned short WINDOW_SIZE = 5000;
 
+    unsigned long sample_period = 100;
+    unsigned long last_update_ts = 0;
+
     Controller *controller = nullptr;
+
+    bool previous_output = false;
 };

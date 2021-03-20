@@ -15,8 +15,9 @@ template <class Adapter, class Configuration> class CoffeeMachine
     CoffeeMachine(Controller *controller, BaseSerialInterface *serial_ifc,
                   IOPin *mode_switch_pin, BaseDisplay *display_type, IOPin *heater_pin,
                   BaseSensor *water_sensor, BaseSensor *steam_sensor)
-        : temp_controller(controller), serial(serial_ifc), mode_detector(mode_switch_pin),
-          display(display_type), heater(heater_pin),
+        : temp_controller(controller, Configuration::PID_SAMPLE_PERIOD),
+          serial(serial_ifc), mode_detector(mode_switch_pin), display(display_type),
+          heater(heater_pin),
           water_t_sensor("water_sensor", water_sensor,
                          Configuration::WATER_TEMP_REFRESH_PERIOD, 10),
           steam_t_sensor("steam_sensor", steam_sensor,
