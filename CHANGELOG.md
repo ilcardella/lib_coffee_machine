@@ -6,8 +6,12 @@
 - Added sample rate to the Relay Controller (compute every 100ms)
 - Rename configuration SPI_DO_PIN to SPI_CS_PIN
 
+### Added
+- Added new method to the BaseDisplay interface to explicitly print the buffer to the display
+
 ### Fixed
 - Serial baudrate configuration is now used to initialise the serial interface
+- Display class calls the initialise() of the BaseDisplay instance during construction
 
 ## [0.2.0] - 24/02/2021
 ### Changed

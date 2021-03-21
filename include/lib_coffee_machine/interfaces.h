@@ -22,6 +22,7 @@ class BaseDisplay
     virtual bool print(const unsigned &col, const unsigned &row, const int &data) = 0;
     virtual bool print(const unsigned &col, const unsigned &row, const float &data) = 0;
     virtual bool print(const unsigned &col, const unsigned &row, const double &data) = 0;
+    virtual bool display() = 0;
 };
 
 class IOPin
