@@ -10,6 +10,7 @@ template <class Adapter> class Display
   public:
     Display(BaseDisplay *display) : display(display), time_last_update(0)
     {
+        display->initialise();
     }
 
     bool update(const Machine::Status &status)
@@ -23,6 +24,7 @@ template <class Adapter> class Display
             write_current_temp(status.current_temperature);
             write_target_temp(status.target_temperature);
             write_status_message(status.status_message);
+            display->display();
             time_last_update = now;
         }
 

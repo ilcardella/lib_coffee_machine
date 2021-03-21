@@ -31,4 +31,8 @@ class MockDisplay : public BaseDisplay
     {
         return true;
     }
+    bool display() override
+    {
+        return true;
+    }
 };
