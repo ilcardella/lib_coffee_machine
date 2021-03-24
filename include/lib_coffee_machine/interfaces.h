@@ -1,5 +1,7 @@
 #pragma once
 
+#include "common.h"
+
 class BaseSerialInterface
 {
   public:
@@ -15,6 +17,20 @@ class BaseDisplay
 {
   public:
     virtual ~BaseDisplay() = default;
+
+    // Optional methods with a base implementation
+
+    virtual bool use_custom_display()
+    {
+        // By default use the display design of lib_coffee_machine
+        return false;
+    }
+    virtual bool print_custom_display(const Machine::Status &status)
+    {
+        return false;
+    }
+
+    // Mandatory methods for which is necessary to provide an implementation
 
     virtual bool initialise() = 0;
     virtual bool clear() = 0;

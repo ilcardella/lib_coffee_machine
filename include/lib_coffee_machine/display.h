@@ -20,10 +20,18 @@ template <class Adapter> class Display
         if (now - time_last_update > REFRESH_PERIOD)
         {
             display->clear();
-            write_machine_mode(status.machine_mode);
-            write_current_temp(status.current_temperature);
-            write_target_temp(status.target_temperature);
-            write_status_message(status.status_message);
+            if (display->use_custom_display())
+            {
+                display->print_custom_display(status);
+            }
+            else
+            {
+                // Print a default basic display design
+                write_machine_mode(status.machine_mode);
+                write_current_temp(status.current_temperature);
+                write_target_temp(status.target_temperature);
+                write_status_message(status.status_message);
+            }
             display->display();
             time_last_update = now;
         }
