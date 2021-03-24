@@ -3,7 +3,7 @@
 #include "gtest/gtest.h"
 
 #include <lib_coffee_machine/coffee_machine.h>
-#include <lib_coffee_machine/default_configuration.h>
+#include <lib_coffee_machine/default/configuration.h>
 
 #include "mock/mock_controller.h"
 #include "mock/mock_display.h"
