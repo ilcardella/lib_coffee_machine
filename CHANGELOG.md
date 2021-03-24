@@ -5,10 +5,12 @@
 - Serial interface output can now be configured to be on/off
 - Added sample rate to the Relay Controller (compute every 100ms)
 - Rename configuration SPI_DO_PIN to SPI_CS_PIN
+- Moved default_configuration.h inside the default directory renaming it to configuration.h
 
 ### Added
 - Added new method to the BaseDisplay interface to explicitly print the buffer to the display
 - BaseDisplay interface allow definition of an optional custom print function
+- Default PID controller implementation
 
 ### Fixed
 - Serial baudrate configuration is now used to initialise the serial interface
