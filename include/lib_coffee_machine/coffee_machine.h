@@ -1,6 +1,7 @@
 #pragma once
 
 #include "common.h"
+#include "default/pid.h"
 #include "display.h"
 #include "heater.h"
 #include "interfaces.h"
@@ -15,7 +16,7 @@ template <class Adapter, class Configuration> class CoffeeMachine
     CoffeeMachine(Controller *controller, BaseSerialInterface *serial_ifc,
                   IOPin *mode_switch_pin, BaseDisplay *display_type, IOPin *heater_pin,
                   BaseSensor *water_sensor, BaseSensor *steam_sensor)
-        : temp_controller(controller, Configuration::PID_SAMPLE_PERIOD),
+        : temp_controller(controller, Configuration::CONTROLLER_SAMPLE_PERIOD),
           serial(serial_ifc), mode_detector(mode_switch_pin), display(display_type),
           heater(heater_pin),
           water_t_sensor("water_sensor", water_sensor,
@@ -30,6 +31,16 @@ template <class Adapter, class Configuration> class CoffeeMachine
         // Mark machine start time
         machine_status.start_timestamp = Adapter::millis();
         machine_status.steam_mode_timestamp = Adapter::millis();
+    }
+
+    CoffeeMachine(BaseSerialInterface *serial_ifc, IOPin *mode_switch_pin,
+                  BaseDisplay *display_type, IOPin *heater_pin, BaseSensor *water_sensor,
+                  BaseSensor *steam_sensor)
+        : CoffeeMachine(new DefaultPID(Configuration::P_GAIN, Configuration::I_GAIN,
+                                       Configuration::D_GAIN),
+                        serial_ifc, mode_switch_pin, display_type, heater_pin,
+                        water_sensor, steam_sensor)
+    {
     }
 
     Machine::Status spin()
