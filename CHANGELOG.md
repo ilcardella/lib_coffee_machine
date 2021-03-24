@@ -1,6 +1,6 @@
 # Coffee Machine Library Changelog
 
-## []
+## [0.3.0] - 24/03/2021
 ### Changed
 - Serial interface output can now be configured to be on/off
 - Added sample rate to the Relay Controller (compute every 100ms)
