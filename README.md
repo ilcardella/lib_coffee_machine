@@ -118,8 +118,8 @@ class CustomTemperatureSensor : public BaseSensor
 
 ### Configuration
 
-The library accept a template argument which should provide static constants of configurable parameters.
-The `default_configuration.h` contains a sample `struct` with configuration parameters required by the `CoffeeMachine` class. You can use that straight away or create a new derived instance replacing the parameters you want.
+The library requires a template argument which should provide static constants of configurable parameters.
+The `configuration.h` contains a sample `struct` with configuration parameters required by the `CoffeeMachine` class. You can use that struct as is or create a new derived instance replacing the parameters you need.
 
 #### Example
 
@@ -129,7 +129,7 @@ my_configuration.h
 ```c++
 #pragma once
 
-#include <lib_coffee_machine/default_configuration.h>
+#include <lib_coffee_machine/default/configuration.h>
 
 struct MyConfiguration : public DefaultConfiguration
 {
@@ -211,3 +211,14 @@ void main()
 }
 
 ```
+
+## Default PID Controller
+
+The library provides a default PID controller. This PID controller requires the following
+configuration parameters to be defined in the Configuration struct:
+- P_GAIN
+- I_GAIN
+- D_GAIN
+
+The easiest way to use the default PID controller is by creating the CoffeeMachine
+instance with the contructor that does not require a Controller in the argument list.
