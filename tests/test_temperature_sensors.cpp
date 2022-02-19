@@ -97,14 +97,14 @@ TEST_F(TestTemperatureSensors, testSteamModeHealthySensorCooling)
     // Mock the mode button as pressed
     mode_switch_pin.set_steam_mode();
     // Mock a high steam temperature
-    steam_sensor.temp_c = 200.0f - Configuration::STEAM_TEMP_OFFSET;
+    steam_sensor.temp_c = 160.0f - Configuration::STEAM_TEMP_OFFSET;
     // controller requesting the relay as off
     controller.set_min_output();
 
     auto status = machine->spin();
 
     ASSERT_EQ(status.machine_mode, Machine::Mode::STEAM_MODE);
-    ASSERT_EQ(status.current_temperature, 200.0);
+    ASSERT_EQ(status.current_temperature, 160.0);
     ASSERT_EQ(status.target_temperature, Configuration::TARGET_STEAM_TEMP);
     ASSERT_FALSE(status.water_heater_on);
     ASSERT_EQ(strcmp(status.status_message, std::string("Cooling...").c_str()), 0);

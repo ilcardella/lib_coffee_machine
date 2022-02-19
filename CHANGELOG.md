@@ -1,6 +1,9 @@
 # Coffee Machine Library Changelog
 
 ## []
+### Added
+- Added configurable max safe temperature to cut off the heater
+
 ### Removed
 - Removed unused configuration parameters
 
