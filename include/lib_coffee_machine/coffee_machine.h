@@ -112,6 +112,16 @@ template <class Adapter, class Configuration> class CoffeeMachine
                             : Configuration::STEAM_TEMP_OFFSET;
         machine_status.current_temperature = static_cast<double>(sensor_value);
 
+        // Report a problem if the read temperature is above the safety limit and
+        // make sure the heater is off
+        if (machine_status.current_temperature > Configuration::SAFETY_MAX_TEMP)
+        {
+            machine_status.water_heater_on = false;
+            strncpy(machine_status.status_message,
+                    string_utils::strings::SAFETY_TEMP_EXCEEDED, machine_status.MSG_LEN);
+            return false;
+        }
+
         // Use a tolerance of +/- 1Deg for the message
         double diff =
             machine_status.target_temperature - machine_status.current_temperature;

@@ -41,6 +41,7 @@ inline static constexpr char PID_FAULT[] = "PID fault";
 inline static constexpr char STEAM_TIMEOUT_EXPIRED[] = "Steam mode timeout expired";
 inline static constexpr char SAFETY_TIMEOUT_EXPIRED[] = "Safety timeout expired";
 inline static constexpr char TEMP_SENSOR_ERROR[] = "Temperature sensor fault";
+inline static constexpr char SAFETY_TEMP_EXCEEDED[] = "Safey temperature exceeded";
 
 } // namespace strings
 

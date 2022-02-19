@@ -39,4 +39,6 @@ struct DefaultConfiguration
     // Safety timeouts in milliseconds to turn off the heater. (disabled if < 1)
     inline static constexpr long SAFETY_TIMEOUT = 2400000; // 40 minutes
     inline static constexpr long STEAM_TIMEOUT = 300000;   // 5 minutes
+    // Maximum temperature where the heater is simply cut off
+    inline static constexpr int SAFETY_MAX_TEMP = 160; // degree celsius
 };
