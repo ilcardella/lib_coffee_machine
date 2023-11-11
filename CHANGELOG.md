@@ -1,6 +1,6 @@
 # Coffee Machine Library Changelog
 
-## []
+## [0.4.0] - 11/11/2023
 ### Added
 - Added configurable max safe temperature to cut off the heater
 
